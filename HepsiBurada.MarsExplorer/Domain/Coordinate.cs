@@ -1,12 +1,14 @@
 ﻿namespace Domain
 {
-    public class Coordinate
+    using Domain.Enums;
+
+    public struct Coordinate
     {
-        public int X { get; private set; }
+        public Compass Direction;
 
-        public int Y { get; private set; }
+        public int X;
 
-        public Compass Direction { get; private set; }
+        public int Y;
 
         public Coordinate(int x, int y, Compass direction)
         {

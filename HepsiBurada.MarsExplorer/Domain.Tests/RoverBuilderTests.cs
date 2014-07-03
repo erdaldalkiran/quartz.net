@@ -1,11 +1,12 @@
 ﻿namespace Domain.Tests
 {
+    using Domain.Builders;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class RoverBuilderTests
     {
-        
         [TestMethod]
         public void BuildRoverWithValidParameters()
         {
@@ -14,6 +15,5 @@
 
             Assert.AreEqual("1 1 N", rover.Location());
         }
-        
     }
 }

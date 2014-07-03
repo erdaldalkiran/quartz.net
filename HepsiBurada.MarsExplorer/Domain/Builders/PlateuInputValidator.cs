@@ -1,10 +1,10 @@
-﻿namespace Domain
+﻿namespace Domain.Builders
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class PlateuInputValidator : IPlateuBuilder
+    public sealed class PlateuInputValidator : IPlateuBuilder
     {
         private readonly IPlateuBuilder _plateuBuilder;
 
@@ -17,6 +17,16 @@
         {
             ValidateCommand(command);
             return _plateuBuilder.Build(command);
+        }
+
+        private IEnumerable<int> GetSizesOfArea(string command)
+        {
+            return SplitAreaCommand(command).Select(x => Convert.ToInt32(x)).ToArray();
+        }
+
+        private IEnumerable<string> SplitAreaCommand(string command)
+        {
+            return command.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         private void ValidateCommand(string command)
@@ -51,19 +61,8 @@
 
             if (GetSizesOfArea(command).ToList().Aggregate(1, (x, y) => x * y) <= 1)
             {
-                throw new ArgumentException(
-                        "Please provide valid sizes for area. Area must be greater than 1");
+                throw new ArgumentException("Please provide valid sizes for area. Area must be greater than 1");
             }
-        }
-
-        private int[] GetSizesOfArea(string command)
-        {
-            return SplitAreaCommand(command).Select(x => Convert.ToInt32(x)).ToArray();
-        }
-
-        private IEnumerable<string> SplitAreaCommand(string command)
-        {
-            return command.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

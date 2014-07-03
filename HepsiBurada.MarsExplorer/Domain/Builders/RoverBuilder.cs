@@ -1,9 +1,11 @@
-﻿namespace Domain
+﻿namespace Domain.Builders
 {
     using System;
     using System.Linq;
 
-    public class RoverBuilder : IRoverBuilder
+    using Domain.Enums;
+
+    public sealed class RoverBuilder : IRoverBuilder
     {
         public Rover Build(string coordinate, string movement, Plateu plateu)
         {

@@ -1,10 +1,13 @@
-﻿namespace Domain
+﻿namespace Domain.Enums
 {
     public enum Compass
     {
         N,
+
+        E,
+
         S,
-        W,
-        E
+
+        W
     }
 }

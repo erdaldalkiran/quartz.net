@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Domain.Builders
 {
     public interface IPlateuBuilder
     {

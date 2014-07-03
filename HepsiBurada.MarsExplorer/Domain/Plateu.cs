@@ -1,18 +1,15 @@
 ﻿namespace Domain
 {
-    using System;
-
-    public class Plateu
+    public sealed class Plateu
     {
-        private readonly int _width;
-
         private readonly int _height;
+
+        private readonly int _width;
 
         public Plateu(int width, int height)
         {
             _width = width;
             _height = height;
-            
         }
 
         public bool IsCoordinateInsideTheArea(Coordinate coordinate)

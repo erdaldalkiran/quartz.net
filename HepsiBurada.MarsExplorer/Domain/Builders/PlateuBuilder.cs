@@ -1,9 +1,9 @@
-﻿namespace Domain
+﻿namespace Domain.Builders
 {
     using System;
     using System.Linq;
 
-    public class PlateuBuilder : IPlateuBuilder
+    public sealed class PlateuBuilder : IPlateuBuilder
     {
         public Plateu Build(string command)
         {
@@ -12,9 +12,5 @@
             var height = Convert.ToInt32(parameters[1]);
             return new Plateu(width, height);
         }
-
-      
-
-       
     }
 }

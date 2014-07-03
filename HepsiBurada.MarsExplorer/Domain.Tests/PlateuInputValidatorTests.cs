@@ -2,32 +2,16 @@
 {
     using System;
 
+    using Autofac;
+
+    using Domain.Builders;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class PlateuInputValidatorTests
+    public class PlateuInputValidatorTests : BaseTest
     {
-
-        private PlateuInputValidator _plateuInputValidator;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            _plateuInputValidator = new PlateuInputValidator(new PlateuBuilder());
-        }
-
-        [TestMethod]
-        public void BuildPlateuWithNegativeAreaValues()
-        {
-            ArgumentExceptionTesting("-1 -3");
-        }
-
-        [TestMethod]
-        public void BuildPlateuWithoutArea()
-        {
-            ArgumentExceptionTesting("1 1");
-        }
-
+        private IPlateuBuilder _plateuInputValidator;
 
         [TestMethod]
         public void BuildPlateuWithEmptyAreaCommand()
@@ -42,9 +26,27 @@
         }
 
         [TestMethod]
+        public void BuildPlateuWithNegativeAreaValues()
+        {
+            ArgumentExceptionTesting("-1 -3");
+        }
+
+        [TestMethod]
         public void BuildPlateuWithNonNumericAreaCommand()
         {
             ArgumentExceptionTesting("a 3");
+        }
+
+        [TestMethod]
+        public void BuildPlateuWithoutArea()
+        {
+            ArgumentExceptionTesting("1 1");
+        }
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _plateuInputValidator = Container.Resolve<IPlateuBuilder>();
         }
 
         private void ArgumentExceptionTesting(string command)
